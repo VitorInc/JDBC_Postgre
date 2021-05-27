@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import db.DB;
+import entities.Product;
 
 public class Program {
 
@@ -18,7 +19,13 @@ public class Program {
 		ResultSet rs = st.executeQuery("select * from tb_product");
 			
 		while (rs.next()) {
-			System.out.println(rs.getLong("Id") + ", " + rs.getString("Name"));
+			Product prod = new Product();
+			prod.setId(rs.getLong("Id"));
+			prod.setDescription(rs.getString("description"));
+			prod.setName(rs.getString("name"));
+			prod.setImageUrl(rs.getString("image_uri"));
+			prod.setPrice(rs.getDouble("price"));
+			System.out.println(prod);
 		}
 	}
 }
