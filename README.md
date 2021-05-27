@@ -2,22 +2,22 @@
 
 ## # Review of OOP and SQL
 
-This project is trying to simulate the back end part of an delivery app, 
+This project (Nélio Alves  https://www.youtube.com/watch?v=xC_yKw3MYX4&t=413s)  is trying to simulate the back end part of an delivery app, 
 that accept request, and also regiter this requests and display important data about the order such as: Date, status, price, itens, localization.
 
 In this project it was used :
-- Chave primária, chave estrangeira
+- Primary key, Foreingner key 
 - DDL (create table, alter table)
 - SQL
   - INSERT
   - SELECT
   - INNER JOIN
 - Classes e objetos
-- Encapsulamento, get/set
-- Tipos enumerados
-- Composição de objetos
-- Coleções (list, map)
-- Acessar dados em BD relacional e instanciar objetos correspondentes
+- Encapsulation, get/set
+- Enum
+- Object compoition
+- Collections (list, map)
+- Access data in relational DB and instantiate corresponding objects
 
 
 ## Create and instantiate of the database
