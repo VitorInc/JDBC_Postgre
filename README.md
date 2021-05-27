@@ -12,7 +12,7 @@ In this project it was used :
   - INSERT
   - SELECT
   - INNER JOIN
-- Classes e objetos
+- Class and objects
 - Encapsulation, get/set
 - Enum
 - Object compoition
