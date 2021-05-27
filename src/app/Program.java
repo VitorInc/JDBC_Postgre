@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 import db.DB;
 import entities.Order;
@@ -18,15 +20,34 @@ public class Program {
 	
 		Statement st = conn.createStatement();
 			
-		ResultSet rs = st.executeQuery("select * from tb_order");
-			
+		ResultSet rs = st.executeQuery("SELECT * FROM tb_order "
+				+"INNER JOIN tb_order_product ON tb_order.id = tb_order_product.order_id "
+				+"INNER JOIN tb_product ON tb_product.id = tb_order_product.product_id");
+
+		Map<Long,Order> map = new HashMap<>();
+		Map<Long,Product> mapprod = new HashMap<>();
 		while (rs.next()) {
 
+			Long orderId = rs.getLong("order_id");
+			if(map.get(orderId) == null){
+				Order order = instantiateOrder(rs);
+				map.put(orderId,order);
+			}
 
-			Order order = instantiateOrder(rs);
+			Long productId = rs.getLong("product_id");
+			if(mapprod.get(productId) ==null) {
+				Product p = instantiateProduct(rs);
+				mapprod.put(productId,p);
+			}
+			map.get(orderId).getProds().add(mapprod.get(productId));
 
-
-			System.out.println(order);
+		}
+		for(Long orderId :map.keySet()){
+			System.out.println(map.get(orderId));
+			for(Product p : map.get(orderId).getProds()){
+				System.out.println(p);
+			}
+			System.out.println();
 		}
 	}
 	private static Product instantiateProduct(ResultSet rs) throws SQLException{
